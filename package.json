@@ -7,8 +7,22 @@
   "scripts": {
     "build": "tsc"
   },
-  "author": "Benjamin Janssens <benji.janssens@gmail.com> (https://benjijanssens.com)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benjiJanssens/trim-image-dataurl.git"
+  },
+  "keywords": [
+    "image",
+    "trim",
+    "dataurl"
+  ],
+  "homepage": "https://github.com/benjiJanssens/trim-image-dataurl#readme",
+  "bugs": {
+    "url": "https://github.com/benjiJanssens/trim-image-dataurl/issues",
+    "email": "benji.janssens@gmail.com"
+  },
   "license": "MIT",
+  "author": "Benjamin Janssens <benji.janssens@gmail.com> (https://benjijanssens.com)",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
@@ -23,5 +37,6 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
-  }
+  },
+  "prepublish": "tsc"
 }
