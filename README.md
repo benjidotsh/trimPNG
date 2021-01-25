@@ -25,3 +25,7 @@ imageElement.src = trimmedImageDataURL;
 ```bash
 npm run build
 ```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
