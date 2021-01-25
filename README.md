@@ -12,6 +12,14 @@ npm/yarn install
 
 ## Usage
 
+```javascript
+import trimImage from 'trim-image-dataurl';
+
+const imageElement = document.getElementsByTagName('img')[0];
+const trimmedImageDataURL = trimImage(imageElement);
+imageElement.src = trimmedImageDataURL;
+```
+
 ### Build for production
 
 ```bash
