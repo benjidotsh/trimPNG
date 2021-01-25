@@ -1,0 +1,26 @@
+{
+  "name": "trim-image-dataurl",
+  "version": "1.0.0",
+  "description": "A TypeScript function to remove transparent pixels from the borders of images",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Benjamin Janssens <benji.janssens@gmail.com> (https://benjijanssens.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.14.0",
+    "@typescript-eslint/parser": "^4.14.0",
+    "eslint": "^7.18.0",
+    "husky": "^4.3.8",
+    "prettier": "2.2.1",
+    "pretty-quick": "^3.1.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
