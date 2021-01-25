@@ -1,6 +1,6 @@
 {
   "name": "trim-image-dataurl",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A TypeScript function to remove transparent pixels from the borders of images",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
