@@ -1,8 +1,7 @@
 export default function trimImage(image: HTMLImageElement): string {
   const canvas = convertImageToCanvas(image);
   const trimmedCanvas = trimCanvas(canvas);
-  const trimmedCanvasDataURL = trimmedCanvas.toDataURL('image/png');
-  return trimmedCanvasDataURL;
+  return trimmedCanvas.toDataURL('image/png');
 }
 
 function convertImageToCanvas(image: HTMLImageElement) {
