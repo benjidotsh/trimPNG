@@ -14,69 +14,54 @@ function convertImageToCanvas(image: HTMLImageElement) {
   return canvas;
 }
 
-function trimCanvas(canvas: HTMLCanvasElement) {
-  const canvasContext = canvas.getContext('2d')!;
-  const canvasContextImageData = canvasContext.getImageData(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-  const bounds: {
-    top?: number;
-    left?: number;
-    right?: number;
-    bottom?: number;
-  } = {
-    top: undefined,
-    left: undefined,
-    right: undefined,
-    bottom: undefined,
-  };
-
-  let i;
-  for (i = 0; i < canvasContextImageData.data.length; i += 4) {
-    if (canvasContextImageData.data[i + 3] !== 0) {
-      const x = (i / 4) % canvas.width;
-      const y = ~~(i / 4 / canvas.width);
-
-      if (bounds.top === undefined) {
-        bounds.top = y;
-      }
-
-      if (bounds.left === undefined) {
-        bounds.left = x;
-      } else if (bounds.left && x < bounds.left) {
-        bounds.left = x;
-      }
-
-      if (bounds.right === undefined) {
-        bounds.right = x;
-      } else if (bounds.right && bounds.right < x) {
-        bounds.right = x;
-      }
-
-      if (bounds.bottom === undefined) {
-        bounds.bottom = y;
-      } else if (bounds.bottom && bounds.bottom < y) {
-        bounds.bottom = y;
-      }
+// https://gist.github.com/timdown/021d9c8f2aabc7092df564996f5afbbf
+const trimCanvas = (function () {
+  function rowBlank(imageData: ImageData, width: number, y: number) {
+    for (let x = 0; x < width; ++x) {
+      if (imageData.data[y * width * 4 + x * 4 + 3] !== 0) return false;
     }
+    return true;
   }
 
-  const trimHeight = bounds.bottom! - bounds.top!;
-  const trimWidth = bounds.right! - bounds.left!;
-  const trimmed = canvasContext.getImageData(
-    bounds.left!,
-    bounds.top!,
-    trimWidth,
-    trimHeight
-  );
+  function columnBlank(
+    imageData: ImageData,
+    width: number,
+    x: number,
+    top: number,
+    bottom: number
+  ) {
+    for (let y = top; y < bottom; ++y) {
+      if (imageData.data[y * width * 4 + x * 4 + 3] !== 0) return false;
+    }
+    return true;
+  }
 
-  const canvasCopy = document.createElement('canvas').getContext('2d')!;
-  canvasCopy.canvas.width = trimWidth;
-  canvasCopy.canvas.height = trimHeight;
-  canvasCopy.putImageData(trimmed, 0, 0);
+  return function (canvas: HTMLCanvasElement) {
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const imageData = ctx!.getImageData(0, 0, canvas.width, canvas.height);
+    let top = 0,
+      bottom = imageData.height,
+      left = 0,
+      right = imageData.width;
 
-  return canvasCopy.canvas;
-}
+    while (top < bottom && rowBlank(imageData, width, top)) ++top;
+    while (bottom - 1 > top && rowBlank(imageData, width, bottom - 1)) --bottom;
+    while (left < right && columnBlank(imageData, width, left, top, bottom))
+      ++left;
+    while (
+      right - 1 > left &&
+      columnBlank(imageData, width, right - 1, top, bottom)
+    )
+      --right;
+
+    const trimmed = ctx!.getImageData(left, top, right - left, bottom - top);
+    const copy = canvas.ownerDocument.createElement('canvas');
+    const copyCtx = copy.getContext('2d');
+    copy.width = trimmed.width;
+    copy.height = trimmed.height;
+    copyCtx!.putImageData(trimmed, 0, 0);
+
+    return copy;
+  };
+})();
