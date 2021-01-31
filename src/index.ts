@@ -1,4 +1,4 @@
-export default function trimImage(image: HTMLImageElement): string {
+export default function trimPNG(image: HTMLImageElement): string {
   const canvas = convertImageToCanvas(image);
   const trimmedCanvas = trimCanvas(canvas);
   return trimmedCanvas.toDataURL('image/png');

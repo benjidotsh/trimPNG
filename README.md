@@ -1,28 +1,28 @@
-# trim-image-dataurl
+# trimPNG
 
-trim-image-dataurl is a TypeScript function to remove transparent pixels from the borders of images
+trimPNG is a TypeScript function to remove transparent pixels from the borders of images
 
 ## Installation
 
 ### npm
 
 ```bash
-npm install trim-image-dataurl
+npm install trimpng
 ```
 
 ### Yarn
 
 ```bash
-yarn add trim-image-dataurl
+yarn add trimpng
 ```
 
 ## Usage
 
 ```javascript
-import trimImage from 'trim-image-dataurl';
+import trimPNG from 'trimpng';
 
 const imageElement = document.getElementsByTagName('img')[0];
-const trimmedImageDataURL = trimImage(imageElement);
+const trimmedImageDataURL = trimPNG(imageElement);
 imageElement.src = trimmedImageDataURL;
 ```
 
@@ -32,4 +32,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://choosealicense.com/licenses/mit)

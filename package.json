@@ -1,6 +1,6 @@
 {
-  "name": "trim-image-dataurl",
-  "version": "1.0.7",
+  "name": "trimpng",
+  "version": "1.0.0",
   "description": "A TypeScript function to remove transparent pixels from the borders of images",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/benjiJanssens/trim-image-dataurl.git"
+    "url": "https://github.com/benjiJanssens/trimpng.git"
   },
   "keywords": [
     "image",
@@ -18,15 +18,16 @@
     "trim",
     "trimming",
     "trimmer",
-    "dataurl"
+    "dataurl",
+    "png"
   ],
   "author": "Benjamin Janssens <benji.janssens@gmail.com> (https://benjijanssens.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/benjiJanssens/trim-image-dataurl/issues",
+    "url": "https://github.com/benjiJanssens/trimpng/issues",
     "email": "benji.janssens@gmail.com"
   },
-  "homepage": "https://github.com/benjiJanssens/trim-image-dataurl#readme",
+  "homepage": "https://github.com/benjiJanssens/trimpng#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
